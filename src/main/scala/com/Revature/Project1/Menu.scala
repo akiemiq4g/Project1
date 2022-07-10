@@ -49,9 +49,12 @@ class Menu(name: String, id: Int) {
     val firstName: String = readLine("First Name: ")
     val lastName: String = readLine("Last Name: ")
     var userName: String = null;
+    var test: Boolean = true;
     do {
       val userName: String = readLine("Username: ")
-    } while (mySQLDB.checkUsername(userName))
+      println(userName)
+      test = mySQLDB.checkUsername(userName)
+    } while (test == false)
 
     val password: String = readLine("Password: ")
     // var password: Array[Char] = console.readPassword

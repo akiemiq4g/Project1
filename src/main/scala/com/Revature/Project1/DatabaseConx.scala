@@ -85,27 +85,6 @@ class DatabaseConx {
     connection.close
   }
 
-  def checkUsername(username: String): Boolean ={
-    val url = "jdbc:mysql://localhost:3306/mysql/userdb"
-    val driver = "com.mysql.jdbc.Driver"
-    val username = "bobby"
-    val password = "bobby"
-    var connection: Connection = null
-    try {
-      Class.forName(driver)
-      var connection = DriverManager.getConnection(url, username, password)
-      val statement = connection.createStatement
-      val rs = statement.executeQuery("SELECT * FROM usertable")
-      while (rs.next) {
-        println(rs)
-      }
-    } catch {
-      case e: Exception => e.printStackTrace
-    }
-    connection.close
-    return true
-
-  }
 
   def viewData()={
 
