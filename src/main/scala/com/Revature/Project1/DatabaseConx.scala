@@ -2,9 +2,8 @@ package com.Revature.Project1
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.SparkSession
-// import com.mysql.cj.jdbc.Driver
+import com.mysql.cj.jdbc.Driver
 import org.apache.spark
-import ujson.IndexedValue.True
 
 import java.sql.DriverManager
 import java.sql.Connection
@@ -31,7 +30,7 @@ class DatabaseConx {
   Logger.getLogger("org").setLevel(Level.ERROR)
   println("created spark session")
 
-  val url = "jdbc:mysql://localhost:3306/userdb"
+  val url = "jdbc:mysql://localhost:3306/test"
   val user = "bobby"
   val pass = "bobby"
   import spark.implicits._
@@ -84,8 +83,6 @@ class DatabaseConx {
     }
     connection.close
   }
-
-
   def viewData()={
 
   }
@@ -119,8 +116,9 @@ class DatabaseConx {
         df.show()
       }
       case 2 => {
-        val sqlDF = spark.sql("SELECT restaurant_id, name, borough, cuisine FROM restaurant")
-        sqlDF.groupBy("borough").count().show()
+        println("View a restaurant count by borough")
+        df = df.select("borough").count()
+        df.show()
       }
 
     }
